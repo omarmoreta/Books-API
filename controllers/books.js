@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const db = require("../models");
 
+// GET /books/seed to insert the array of books to the database
 // router.get("/seed", (req, res) => {
 //   db.Books.insertMany([
 //     {
@@ -47,6 +48,7 @@ const db = require("../models");
 //     );
 // });
 
+// GET /books to get all books
 router.get("/", async (req, res) => {
   try {
     const books = await db.Books.find().orFail();
@@ -56,6 +58,7 @@ router.get("/", async (req, res) => {
   }
 });
 
+// GET /books/:id to get a book
 router.get("/:id", async (req, res) => {
   try {
     const book = await db.Books.findById(req.params.id).orFail();
@@ -65,6 +68,7 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+// POST /books to create a book
 router.post("/", async (req, res) => {
   try {
     const book = await db.Books.create(req.body);
@@ -74,6 +78,7 @@ router.post("/", async (req, res) => {
   }
 });
 
+// PUT /books/:id to update a book
 router.put("/:id", async (req, res) => {
   try {
     const book = await db.Books.updateOne(
@@ -86,6 +91,7 @@ router.put("/:id", async (req, res) => {
   }
 });
 
+// DELETE /books/:id to delete a book
 router.delete("/:id", async (req, res) => {
   try {
     const book = await db.Books.deleteOne({ _id: req.params.id }).orFail();
