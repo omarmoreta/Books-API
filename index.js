@@ -17,11 +17,13 @@ app.get("/books/:id", function (req, res, next) {
 });
 
 app.get("/", (req, res) => {
-  res.send("GET /books");
+  res.send("Welcome to the Books API");
 });
 
 app.get("*", (req, res) => {
   res.send("404, PAGE NOT FOUND");
 });
 
-app.listen(PORT);
+app.listen(PORT, () => {
+  console.log(`Listening on ${PORT}`);
+});
